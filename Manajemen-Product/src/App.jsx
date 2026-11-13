@@ -120,9 +120,99 @@ function App() {
   };
 
   return (
-    <main className="container py-5">
-      <h1 className="text-primary">Namaku Sean</h1>
-    </main>
+    <div className="container py-5" style={{ maxWidth: '1000px' }}>
+      {/* Header Halaman */}
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center mb-4 gap-3">
+        <div>
+          <h2 className="fw-bold mb-1 text-dark">Manajemen Produk</h2>
+          <p className="text-muted mb-0" style={{ fontSize: '0.95rem' }}>
+            Kelola daftar produk dan harga dalam satu tempat.
+          </p>
+        </div>
+        <button
+          className="btn btn-primary fw-medium px-3 py-2"
+          style={{ borderRadius: '8px' }}
+          onClick={handleOpenAdd}
+        >
+          + Tambah Produk
+        </button>
+      </div>
+
+      {/* Search Bar & Counter */}
+      <div className="d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center mb-4 gap-2">
+        <div className="position-relative" style={{ maxWidth: '320px', width: '100%' }}>
+          <span
+            className="position-absolute top-50 translate-middle-y text-muted"
+            style={{ left: '12px' }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+            </svg>
+          </span>
+          <input
+            type="text"
+            className="form-control ps-5"
+            placeholder="Cari nama produk..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={{ borderRadius: '8px', fontSize: '0.9rem' }}
+          />
+        </div>
+        <span className="text-muted small text-end">
+          {products.length} produk
+        </span>
+      </div>
+
+      {/* Grid Daftar Kartu Produk */}
+      {filteredProducts.length > 0 ? (
+        <div className="row g-3 mb-4">
+          {filteredProducts.map((product) => (
+            <div className="col-12 col-md-6 col-lg-4" key={product.id}>
+              <div className="product-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div>
+                  <small className="text-muted d-block mb-1" style={{ fontSize: '0.75rem' }}>
+                    ID: {product.id}
+                  </small>
+                  <h5 className="fw-bold text-dark mb-1">{product.nama}</h5>
+                  <p className="fw-bold text-primary fs-5 mb-3">
+                    {formatRupiah(product.harga)}
+                  </p>
+                </div>
+                <div className="d-flex gap-2">
+                  <button
+                    className="btn btn-outline-edit w-50 py-1"
+                    onClick={() => handleOpenEdit(product)}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="btn btn-outline-delete w-50 py-1"
+                    onClick={() => handleOpenDelete(product)}
+                  >
+                    Hapus
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-5 bg-white rounded-3 border mb-4">
+          <p className="text-muted mb-0">Produk tidak ditemukan.</p>
+        </div>
+      )}
+
+      {/* Footer Info */}
+      <div className="text-muted small">
+        Menampilkan {filteredProducts.length} dari {products.length} produk
+      </div>
+    </div>
   );
 }
 
