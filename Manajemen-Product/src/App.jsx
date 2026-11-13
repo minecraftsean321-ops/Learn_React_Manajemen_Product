@@ -1,8 +1,8 @@
 function App() {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
+    <main className="container py-5">
+      <h1 className="text-primary">Namaku Sean</h1>
+    </main>
   );
 }
 
