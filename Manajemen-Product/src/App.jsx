@@ -212,6 +212,76 @@ function App() {
       <div className="text-muted small">
         Menampilkan {filteredProducts.length} dari {products.length} produk
       </div>
+
+    {/* ================= POP-UP MODAL: TAMBAH PRODUK ================= */}
+      {activeModal === 'add' && (
+        <div className="custom-modal-backdrop" onClick={handleCloseModal}>
+          <div
+            className="custom-modal-content p-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="d-flex justify-content-between align-items-start mb-1">
+              <h5 className="fw-bold mb-0">Tambah Produk</h5>
+              <button
+                type="button"
+                className="btn-close"
+                style={{ fontSize: '0.8rem' }}
+                onClick={handleCloseModal}
+              ></button>
+            </div>
+            <p className="text-muted small mb-3">
+              Masukkan informasi produk baru.
+            </p>
+
+            {errorMsg && (
+              <div className="alert alert-danger py-2 px-3 small">
+                {errorMsg}
+              </div>
+            )}
+
+            <form onSubmit={handleSaveAdd}>
+              <div className="mb-3">
+                <label className="form-label fw-semibold small">Nama Produk</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Contoh: Pulpen"
+                  value={namaInput}
+                  onChange={(e) => setNamaInput(e.target.value)}
+                  autoFocus
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="form-label fw-semibold small">Harga (Rp)</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  placeholder="Contoh: 5000"
+                  value={hargaInput}
+                  onChange={(e) => setHargaInput(e.target.value)}
+                />
+                <div className="form-text" style={{ fontSize: '0.78rem' }}>
+                  Harga harus lebih dari 0.
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-end gap-2">
+                <button
+                  type="button"
+                  className="btn btn-outline-primary px-3"
+                  onClick={handleCloseModal}
+                >
+                  Batal
+                </button>
+                <button type="submit" className="btn btn-primary px-3">
+                  Simpan Produk
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
