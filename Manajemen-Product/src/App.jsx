@@ -353,6 +353,71 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* ================= POP-UP MODAL: HAPUS PRODUK ================= */}
+      {activeModal === 'delete' && selectedProduct && (
+        <div className="custom-modal-backdrop" onClick={handleCloseModal}>
+          <div
+            className="custom-modal-content p-4 text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="d-flex justify-content-end">
+              <button
+                type="button"
+                className="btn-close"
+                style={{ fontSize: '0.8rem' }}
+                onClick={handleCloseModal}
+              ></button>
+            </div>
+
+            <div className="trash-icon-circle mb-3">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+              </svg>
+            </div>
+
+            <h5 className="fw-bold mb-1">Hapus Produk?</h5>
+            <p className="text-muted small mb-3">
+              Produk yang dihapus tidak dapat dikembalikan.
+            </p>
+
+            {/* Box Detail Produk yang Akan Dihapus */}
+            <div className="border rounded-3 p-3 text-start mb-4 bg-light bg-opacity-50">
+              <small className="text-muted d-block" style={{ fontSize: '0.75rem' }}>
+                ID: {selectedProduct.id}
+              </small>
+              <div className="fw-bold text-dark">{selectedProduct.nama}</div>
+              <div className="fw-bold text-primary">
+                {formatRupiah(selectedProduct.harga)}
+              </div>
+            </div>
+
+            <div className="d-flex gap-2">
+              <button
+                type="button"
+                className="btn btn-outline-primary w-50"
+                onClick={handleCloseModal}
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger w-50"
+                onClick={handleConfirmDelete}
+              >
+                Hapus Produk
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
