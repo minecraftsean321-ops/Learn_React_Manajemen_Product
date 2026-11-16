@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 import '../App.css';
+import ErrorPage from './error-page';
 
 export default function Detail({ products }) {
     const { id } = useParams();
@@ -7,7 +8,7 @@ export default function Detail({ products }) {
     const product = products.find((item) => item.id === Number(id));
 
     if(!product) {
-        return <p className='container py-5'> Product tidak ditemukan </p>
+        return <ErrorPage />;
     }
 
     return (
