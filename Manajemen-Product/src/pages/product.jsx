@@ -2,16 +2,7 @@ import { useState } from "react";
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-const INITIAL_PRODUCTS = [
-  {id: 1, nama: 'Pulpen', harga: 5000},
-  { id: 2, nama: 'Buku Tulis', harga: 12000 },
-  { id: 3, nama: 'Spidol', harga: 8000 },
-  { id: 4, nama: 'Penggaris', harga: 6000 },
-  { id: 5, nama: 'Penghapus', harga: 3000 },
-];
-
-function App() {
-  const [products, setProducts] = useState(INITIAL_PRODUCTS);
+function Product({ products, setProducts }) {
   const [searchQuery, setSearchQuery] = useState('');
 
   // State untuk kontrol Modal ('add' | 'edit' | 'delete' | null)
@@ -432,4 +423,4 @@ function App() {
   );
 }
 
-export default App;
+export default Product;

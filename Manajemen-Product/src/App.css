@@ -82,6 +82,16 @@ body {
   justify-content: center;
 }
 
+.detail-product {
+  border: solid 1px #2563eb;
+  border-radius: 12px;
+  margin: 10px auto;
+  padding: 32px;
+  width: fit-content;
+
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
