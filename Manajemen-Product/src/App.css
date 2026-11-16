@@ -22,6 +22,12 @@ body {
   font-size: 0.875rem;
 }
 
+.btn-detail {
+  color: #2563eb;
+  
+
+}
+
 .btn-outline-edit:hover {
   background-color: #eff6ff;
   color: #1d4ed8;
